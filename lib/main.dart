@@ -1,13 +1,24 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive/hive.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:lottie/lottie.dart';
+import 'package:waltrack/pages/homepage.dart';
+import 'package:waltrack/pages/splash.dart';
 
 
-void main() => runApp(App());
+void main() async {
+  await Hive.initFlutter();
+  await Hive.openBox('money');
+  runApp(const App());
+}
 
 class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -18,12 +29,14 @@ class App extends StatelessWidget {
       title: 'Introduction screen',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: OnBoardingPage(),
+      home: const OnBoardingPage(),
     );
   }
 }
 
 class OnBoardingPage extends StatefulWidget {
+  const OnBoardingPage({Key? key}) : super(key: key);
+
   @override
   _OnBoardingPageState createState() => _OnBoardingPageState();
 }
@@ -33,7 +46,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
   void _onIntroEnd(context) {
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => HomePage()),
+      MaterialPageRoute(builder: (_) => const Splash()),
     );
   }
 
@@ -58,7 +71,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     const pageDecoration = PageDecoration(
       titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
       bodyTextStyle: bodyStyle,
-      bodyPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
+      bodyPadding: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
       pageColor: Colors.white,
       imagePadding: EdgeInsets.zero,
     );
@@ -71,7 +84,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(top: 16, right: 16),
-            child: _buildImage('flutter.png', 100),
+            child: _buildImage('flutter.png', 110),
           ),
         ),
       ),
@@ -91,7 +104,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           title: "Expense tracker",
           body:
           "All your spends, income and bill reminders in one place.",
-          image: Lottie.asset('assets/img1.json'),
+          image: Lottie.asset('assets/img5.json'),
           // image: Lottie.network('https://assets1.lottiefiles.com/packages/lf20_06a6pf9i.json'),
           // image: _buildImage('img1.jpg'),
           decoration: pageDecoration,
@@ -165,8 +178,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             bodyAlignment: Alignment.bottomCenter,
             imageAlignment: Alignment.topCenter,
           ),
-          // image: Lottie.asset('assets/img5.json'),
-          image: Lottie.network('https://assets8.lottiefiles.com/packages/lf20_5ub93vki/data.json'),
+           image: Lottie.asset('assets/img1.json'),
+          // image: Lottie.network('https://assets8.lottiefiles.com/packages/lf20_5ub93vki/data.json'),
           // image: _buildImage('img1.jpg'),
           reverse: true,
         ),
@@ -205,12 +218,12 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   }
 }
 
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
-      body: const Center(child: Text("This is the screen after Introduction")),
-    );
-  }
-}
+// class HomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: const Text('Home')),
+//       body: const Center(child: Text("This is the screen after Introduction")),
+//     );
+//   }
+// }
