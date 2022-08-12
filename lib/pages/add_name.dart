@@ -46,7 +46,7 @@ class _AddNameState extends State<AddName> {
                 16.0,
               ),
               child: Image.asset(
-                "assets/icon.png",
+                "assets/logoicon.png",
                 width: 64.0,
                 height: 64.0,
               ),
@@ -113,7 +113,7 @@ class _AddNameState extends State<AddName> {
                           },
                         ),
                         backgroundColor: Colors.white,
-                        content: Text(
+                        content: const Text(
                           "Please Enter a name",
                           style: TextStyle(
                             color: Colors.black,
@@ -127,7 +127,7 @@ class _AddNameState extends State<AddName> {
                     await dbHelper.addName(name);
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (context) => HomePage(),
+                        builder: (context) => const HomePage(),
                       ),
                     );
                   }

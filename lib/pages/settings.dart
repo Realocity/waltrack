@@ -1,6 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:waltrack/controllers/db_helper.dart';
+import 'package:waltrack/pages/notificationservice.dart';
 import 'package:waltrack/pages/widgets/confirm_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import 'about.dart';
+
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -13,19 +19,25 @@ class _SettingsState extends State<Settings> {
   //
 
   DbHelper dbHelper = DbHelper();
+  final _formKey = GlobalKey<FormState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _notificationService = NotificationService();
+  
+
 
   //
   @override
   Widget build(BuildContext context) {
+    var pages;
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Settings",
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.all(
+        padding: const EdgeInsets.all(
           12.0,
         ),
         children: [
@@ -39,7 +51,7 @@ class _SettingsState extends State<Settings> {
               }
             },
             tileColor: Colors.white,
-            contentPadding: EdgeInsets.symmetric(
+            contentPadding: const EdgeInsets.symmetric(
               vertical: 12.0,
               horizontal: 20.0,
             ),
@@ -48,27 +60,28 @@ class _SettingsState extends State<Settings> {
                 8.0,
               ),
             ),
-            title: Text(
+            title: const Text(
               "Clean Data",
               style: TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.w800,
               ),
             ),
-            subtitle: Text(
+            subtitle: const Text(
               "This is irreversible",
             ),
-            trailing: Icon(
+            trailing: const Icon(
               Icons.delete_forever,
               size: 32.0,
               color: Colors.black87,
             ),
           ),
           //
-          SizedBox(
+          const SizedBox(
             height: 20.0,
           ),
-          //
+
+          // Change name
           ListTile(
             onTap: () async {
               String nameEditing = "";
@@ -76,7 +89,7 @@ class _SettingsState extends State<Settings> {
                 context: context,
                 builder: (context) => AlertDialog(
                   backgroundColor: Colors.grey[300],
-                  title: Text(
+                  title: const Text(
                     "Enter new name",
                   ),
                   content: Container(
@@ -86,16 +99,16 @@ class _SettingsState extends State<Settings> {
                         12.0,
                       ),
                     ),
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       vertical: 8.0,
                       horizontal: 16.0,
                     ),
                     child: TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Your Name",
                         border: InputBorder.none,
                       ),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20.0,
                       ),
                       maxLength: 12,
@@ -109,7 +122,7 @@ class _SettingsState extends State<Settings> {
                       onPressed: () {
                         Navigator.of(context).pop(nameEditing);
                       },
-                      child: Text(
+                      child: const Text(
                         "OK",
                       ),
                     ),
@@ -123,7 +136,7 @@ class _SettingsState extends State<Settings> {
               }
             },
             tileColor: Colors.white,
-            contentPadding: EdgeInsets.symmetric(
+            contentPadding: const EdgeInsets.symmetric(
               vertical: 12.0,
               horizontal: 20.0,
             ),
@@ -132,27 +145,28 @@ class _SettingsState extends State<Settings> {
                 8.0,
               ),
             ),
-            title: Text(
+            title: const Text(
               "Change Name",
               style: TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.w800,
               ),
             ),
-            subtitle: Text(
+            subtitle: const Text(
               "Welcome {newname}",
             ),
-            trailing: Icon(
+            trailing: const Icon(
               Icons.change_circle,
               size: 32.0,
               color: Colors.black87,
             ),
           ),
           //
-          SizedBox(
+          const SizedBox(
             height: 20.0,
           ),
-          //
+
+          // Authentication
           FutureBuilder<bool>(
             future: dbHelper.getLocalAuth(),
             builder: (context, snapshot) {
@@ -166,7 +180,7 @@ class _SettingsState extends State<Settings> {
                   },
                   value: snapshot.data == null ? false : snapshot.data!,
                   tileColor: Colors.white,
-                  contentPadding: EdgeInsets.symmetric(
+                  contentPadding: const EdgeInsets.symmetric(
                     vertical: 12.0,
                     horizontal: 20.0,
                   ),
@@ -175,14 +189,14 @@ class _SettingsState extends State<Settings> {
                       8.0,
                     ),
                   ),
-                  title: Text(
+                  title: const Text(
                     "Local Bio Auth",
                     style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
-                  subtitle: Text(
+                  subtitle: const Text(
                     "Secure This app, Use Fingerprint to unlock the app.",
                   ),
                 );
@@ -190,6 +204,147 @@ class _SettingsState extends State<Settings> {
                 return Container();
               }
             },
+          ),
+          const SizedBox(
+            height: 20.0,
+          ),
+          // ignore: prefer_const_constructors
+
+          // Terms and Conditions
+          ListTile(
+            onTap: () => {
+              launch(
+                  'https://realocity.blogspot.com/p/waltrack-terms-and-condicitions.html')
+            },
+            tileColor: Colors.white,
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 12.0,
+              horizontal: 20.0,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                8.0,
+              ),
+            ),
+            title: const Text(
+              'Terms & Conditions',
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            subtitle: const Text(
+              "For the purposes of these Terms and Conditions:",
+            ),
+            trailing: const Icon(
+              Icons.file_copy,
+              size: 32.0,
+              color: Colors.black87,
+            ),
+          ),
+          const SizedBox(
+            height: 20.0,
+          ),
+
+          // Privacy Policy
+          ListTile(
+            onTap: () => {
+              launch(
+                  'https://realocity.blogspot.com/p/waltrack-privacy-policy.html')
+            },
+            tileColor: Colors.white,
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 12.0,
+              horizontal: 20.0,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                8.0,
+              ),
+            ),
+            title: const Text(
+              'Privacy Policy',
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            subtitle: const Text(
+              "I value your trust in providing us your Personal Information,",
+            ),
+            trailing: const Icon(
+              Icons.policy,
+              size: 32.0,
+              color: Colors.black87,
+            ),
+          ),
+          const SizedBox(
+            height: 20.0,
+          ),
+
+          // About
+          ListTile(
+            onTap: () {
+              Navigator.push(context,CupertinoPageRoute(builder: (redContext) => ProfileApp()));
+            },
+            tileColor: Colors.white,
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 12.0,
+              horizontal: 20.0,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                8.0,
+              ),
+            ),
+            title: const Text(
+              'About',
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            subtitle: const Text(
+              "The info about application and developer.",
+            ),
+            trailing: const Icon(
+              Icons.info,
+              size: 32.0,
+              color: Colors.black87,
+            ),
+          ),
+          const SizedBox(
+            height: 20.0,
+          ),
+
+
+          ListTile(
+            onTap: () => pages.instantNofitication(), //{},
+            tileColor: Colors.white,
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 12.0,
+              horizontal: 20.0,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                8.0,
+              ),
+            ),
+            title: const Text(
+              'Notifications',
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            subtitle: const Text(
+              "Secure This app, Use Fingerprint to unlock the app.",
+            ),
+            trailing: const Icon(
+              Icons.exit_to_app,
+              size: 32.0,
+              color: Colors.black87,
+            ),
           ),
         ],
       ),

@@ -23,7 +23,7 @@ class _FingerPrintAuthState extends State<FingerPrintAuth> {
       if (authenticated) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => HomePage(),
+            builder: (context) => const HomePage(),
           ),
         );
       } else {
@@ -33,10 +33,10 @@ class _FingerPrintAuthState extends State<FingerPrintAuth> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text(
+          title: const Text(
             "ERROR",
           ),
-          content: Text(
+          content: const Text(
             "You need to setup either PIN or Fingerprint Authentication to be able to use this App !\nI am doing this for your safety 🙂",
           ),
           actions: [
@@ -44,7 +44,7 @@ class _FingerPrintAuthState extends State<FingerPrintAuth> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text(
+              child: const Text(
                 "Ok",
               ),
             ),
@@ -64,27 +64,27 @@ class _FingerPrintAuthState extends State<FingerPrintAuth> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Local Auth"),
+        title: const Text("Local Auth"),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              padding: EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50.0),
                 color: Colors.white54,
               ),
               child: Icon(
-                Icons.lock_outline_rounded,
+                Icons.fingerprint_rounded,
                 color: Theme.of(context).primaryColor,
                 size: 150.0,
               ),
             ),
             //
-            SizedBox(
-              height: 15.0,
+            const SizedBox(
+              height: 25.0,
             ),
             //
             if (!authenticated)
@@ -92,7 +92,7 @@ class _FingerPrintAuthState extends State<FingerPrintAuth> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Oh Snap ! You Need to authenticate to move forward.",
                     style: TextStyle(
                       fontSize: 28.0,
@@ -101,7 +101,7 @@ class _FingerPrintAuthState extends State<FingerPrintAuth> {
                     textAlign: TextAlign.center,
                   ),
                   //
-                  SizedBox(
+                  const SizedBox(
                     height: 15.0,
                   ),
                   //
@@ -111,7 +111,7 @@ class _FingerPrintAuthState extends State<FingerPrintAuth> {
                     },
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
-                      children: [
+                      children: const [
                         Text(
                           "Try Again",
                           style: TextStyle(

@@ -13,7 +13,8 @@ import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key, }) : super(key: key);
+  
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -136,7 +137,7 @@ class _HomePageState extends State<HomePage> {
           Navigator.of(context)
               .push(
             CupertinoPageRoute(
-              builder: (context) => AddExpenseNoGradient(),
+              builder: (context) => const AddExpenseNoGradient(),
             ),
           )
               .then((value) {
@@ -149,7 +150,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         backgroundColor: Static.PrimaryColor,
-        child: Icon(
+        child: const Icon(
           Icons.add_outlined,
           size: 32.0,
         ),
@@ -160,7 +161,7 @@ class _HomePageState extends State<HomePage> {
         builder: (context, snapshot) {
           // print(snapshot.data);
           if (snapshot.hasError) {
-            return Center(
+            return const Center(
               child: Text(
                 "Oopssss !!! There is some error !",
                 style: TextStyle(
@@ -171,7 +172,7 @@ class _HomePageState extends State<HomePage> {
           }
           if (snapshot.hasData) {
             if (snapshot.data!.isEmpty) {
-              return Center(
+              return const Center(
                 child: Text(
                   "You haven't added Any Data !",
                   style: TextStyle(
@@ -200,35 +201,35 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.circular(
                                 32.0,
                               ),
-                              gradient: LinearGradient(
-                                colors: <Color>[
-                                  Static.PrimaryColor,
-                                  Colors.blueAccent,
-                                ],
-                              ),
+                              // gradient: const LinearGradient(
+                              //   colors: <Color>[
+                              //     Static.PrimaryColor,
+                              //     Colors.transparent,
+                              //   ],
+                              // ),
                             ),
                             child: CircleAvatar(
                               maxRadius: 28.0,
                               backgroundColor: Colors.transparent,
                               child: Image.asset(
-                                "assets/face.png",
+                                "assets/logo.png",
                                 width: 64.0,
                               ),
                             ),
                           ),
-                          SizedBox(
-                            width: 8.0,
+                          const SizedBox(
+                            width: 18.0,
                           ),
                           SizedBox(
-                            width: 200.0,
+                            width: 280.0,
                             child: Text(
-                              "Welcome ${preferences.getString('name')}",
+                              "Welcome to WalTrack ${preferences.getString('name')}",
                               style: TextStyle(
-                                fontSize: 24.0,
+                                fontSize: 19.0,
                                 fontWeight: FontWeight.w700,
-                                color: Static.PrimaryMaterialColor[800],
+                                color: Color.fromARGB(227, 74, 99, 11),
                               ),
-                              maxLines: 1,
+                              maxLines: 2,
                             ),
                           ),
                         ],
@@ -240,7 +241,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           color: Colors.white70,
                         ),
-                        padding: EdgeInsets.all(
+                        padding: const EdgeInsets.all(
                           12.0,
                         ),
                         child: InkWell(
@@ -255,7 +256,7 @@ class _HomePageState extends State<HomePage> {
                               setState(() {});
                             });
                           },
-                          child: Icon(
+                          child: const Icon(
                             Icons.settings,
                             size: 32.0,
                             color: Color(0xff3E454C),
@@ -270,7 +271,7 @@ class _HomePageState extends State<HomePage> {
                 //
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
-                  margin: EdgeInsets.all(
+                  margin: const EdgeInsets.all(
                     12.0,
                   ),
                   child: Ink(
@@ -278,7 +279,7 @@ class _HomePageState extends State<HomePage> {
                       gradient: LinearGradient(
                         colors: <Color>[
                           Static.PrimaryColor,
-                          Colors.blueAccent,
+                          Color.fromARGB(255, 255, 79, 35),
                         ],
                       ),
                       borderRadius: BorderRadius.all(
@@ -288,7 +289,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(
                           Radius.circular(
                             24.0,
@@ -297,13 +298,13 @@ class _HomePageState extends State<HomePage> {
                         // color: Static.PrimaryColor,
                       ),
                       alignment: Alignment.center,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 18.0,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 58.0,
                         horizontal: 8.0,
                       ),
                       child: Column(
                         children: [
-                          Text(
+                          const Text(
                             'Total Balance',
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -312,19 +313,19 @@ class _HomePageState extends State<HomePage> {
                               color: Colors.white,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12.0,
                           ),
                           Text(
                             'Rs $totalBalance',
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 36.0,
                               fontWeight: FontWeight.w700,
                               color: Colors.white,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12.0,
                           ),
                           Padding(
@@ -346,7 +347,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                //
+                // plot points
                 Padding(
                   padding: const EdgeInsets.all(
                     12.0,
@@ -443,8 +444,8 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                 //
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
+                const Padding(
+                  padding: EdgeInsets.all(12.0),
                   child: Text(
                     "Recent Transactions",
                     style: TextStyle(
@@ -457,7 +458,7 @@ class _HomePageState extends State<HomePage> {
                 //
                 ListView.builder(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: snapshot.data!.length + 1,
                   itemBuilder: (context, index) {
                     TransactionModel dataAtIndex;
@@ -492,13 +493,13 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
                 //
-                SizedBox(
+                const SizedBox(
                   height: 60.0,
                 ),
               ],
             );
           } else {
-            return Text(
+            return const Text(
               "Loading...",
             );
           }
@@ -524,7 +525,7 @@ class _HomePageState extends State<HomePage> {
               20.0,
             ),
           ),
-          padding: EdgeInsets.all(
+          padding: const EdgeInsets.all(
             6.0,
           ),
           child: Icon(
@@ -532,14 +533,14 @@ class _HomePageState extends State<HomePage> {
             size: 28.0,
             color: Colors.green[700],
           ),
-          margin: EdgeInsets.only(
+          margin: const EdgeInsets.only(
             right: 8.0,
           ),
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               "Income",
               style: TextStyle(
                 fontSize: 14.0,
@@ -548,7 +549,7 @@ class _HomePageState extends State<HomePage> {
             ),
             Text(
               value,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.w700,
                 color: Colors.white,
@@ -570,7 +571,7 @@ class _HomePageState extends State<HomePage> {
               20.0,
             ),
           ),
-          padding: EdgeInsets.all(
+          padding: const EdgeInsets.all(
             6.0,
           ),
           child: Icon(
@@ -578,14 +579,14 @@ class _HomePageState extends State<HomePage> {
             size: 28.0,
             color: Colors.red[700],
           ),
-          margin: EdgeInsets.only(
+          margin: const EdgeInsets.only(
             right: 8.0,
           ),
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               "Expense",
               style: TextStyle(
                 fontSize: 14.0,
@@ -594,7 +595,7 @@ class _HomePageState extends State<HomePage> {
             ),
             Text(
               value,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.w700,
                 color: Colors.white,
@@ -629,7 +630,7 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(18.0),
         margin: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
-          color: Color(0xffced4eb),
+          color: const Color(0xffced4eb),
           borderRadius: BorderRadius.circular(
             8.0,
           ),
@@ -650,10 +651,10 @@ class _HomePageState extends State<HomePage> {
                           size: 28.0,
                           color: Colors.red[700],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 4.0,
                         ),
-                        Text(
+                        const Text(
                           "Expense",
                           style: TextStyle(
                             fontSize: 20.0,
@@ -679,7 +680,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Text(
                       "- $value",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 24.0,
                         fontWeight: FontWeight.w700,
                       ),
@@ -728,7 +729,7 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(18.0),
         margin: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
-          color: Color(0xffced4eb),
+          color: const Color(0xffced4eb),
           borderRadius: BorderRadius.circular(
             8.0,
           ),
@@ -746,10 +747,10 @@ class _HomePageState extends State<HomePage> {
                       size: 28.0,
                       color: Colors.green[700],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 4.0,
                     ),
-                    Text(
+                    const Text(
                       "Credit",
                       style: TextStyle(
                         fontSize: 20.0,
@@ -775,7 +776,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Text(
                   "+ $value",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 24.0,
                     fontWeight: FontWeight.w700,
                   ),
@@ -801,7 +802,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget selectMonth() {
     return Padding(
-      padding: EdgeInsets.all(
+      padding: const EdgeInsets.all(
         8.0,
       ),
       child: Row(

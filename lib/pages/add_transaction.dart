@@ -51,14 +51,14 @@ class _AddExpenseNoGradientState extends State<AddExpenseNoGradient> {
       appBar: AppBar(
         toolbarHeight: 0.0,
       ),
-      backgroundColor: Color(0xffe2e7ef),
+      backgroundColor: const Color(0xffe2e7ef),
       //
       body: ListView(
-        padding: EdgeInsets.all(
+        padding: const EdgeInsets.all(
           12.0,
         ),
         children: [
-          Text(
+          const Text(
             "\nAdd Transaction",
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -67,7 +67,7 @@ class _AddExpenseNoGradientState extends State<AddExpenseNoGradient> {
             ),
           ),
           //
-          SizedBox(
+          const SizedBox(
             height: 20.0,
           ),
           //
@@ -80,26 +80,26 @@ class _AddExpenseNoGradientState extends State<AddExpenseNoGradient> {
                     16.0,
                   ),
                 ),
-                padding: EdgeInsets.all(
+                padding: const EdgeInsets.all(
                   12.0,
                 ),
-                child: Icon(
-                  Icons.attach_money,
+                child: const Icon(
+                  Icons.currency_rupee,
                   size: 24.0,
                   // color: Colors.grey[700],
                   color: Colors.white,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 12.0,
               ),
               Expanded(
                 child: TextField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: "0",
                     border: InputBorder.none,
                   ),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 24.0,
                   ),
                   onChanged: (val) {
@@ -110,10 +110,11 @@ class _AddExpenseNoGradientState extends State<AddExpenseNoGradient> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           backgroundColor: Colors.red,
-                          duration: Duration(
+                          duration: const Duration(
                             seconds: 2,
                           ),
                           content: Row(
+                            // ignore: prefer_const_literals_to_create_immutables
                             children: [
                               Icon(
                                 Icons.info_outline,
@@ -157,26 +158,26 @@ class _AddExpenseNoGradientState extends State<AddExpenseNoGradient> {
                     16.0,
                   ),
                 ),
-                padding: EdgeInsets.all(
+                padding: const EdgeInsets.all(
                   12.0,
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.description,
                   size: 24.0,
                   // color: Colors.grey[700],
                   color: Colors.white,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 12.0,
               ),
               Expanded(
                 child: TextField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: "Note on Transaction",
                     border: InputBorder.none,
                   ),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20.0,
                   ),
                   onChanged: (val) {
@@ -187,7 +188,7 @@ class _AddExpenseNoGradientState extends State<AddExpenseNoGradient> {
             ],
           ),
           //
-          SizedBox(
+          const SizedBox(
             height: 20.0,
           ),
           //
@@ -200,11 +201,11 @@ class _AddExpenseNoGradientState extends State<AddExpenseNoGradient> {
                     16.0,
                   ),
                 ),
-                padding: EdgeInsets.all(
+                padding: const EdgeInsets.all(
                   12.0,
                 ),
-                child: Icon(
-                  Icons.attach_money,
+                child: const Icon(
+                  Icons.currency_rupee_rounded,
                   size: 24.0,
                   // color: Colors.grey[700],
                   color: Colors.white,

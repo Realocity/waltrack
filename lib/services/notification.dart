@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
@@ -13,7 +12,7 @@ class NotificationService extends ChangeNotifier {
         FlutterLocalNotificationsPlugin();
 
     AndroidInitializationSettings androidInitializationSettings =
-        AndroidInitializationSettings("ic_launcher");
+        const AndroidInitializationSettings("ic_launcher");
 
     IOSInitializationSettings iosInitializationSettings =
         IOSInitializationSettings();
@@ -32,7 +31,7 @@ class NotificationService extends ChangeNotifier {
 
     var ios = IOSNotificationDetails();
 
-    var platform = new NotificationDetails(android: android, iOS: ios);
+    var platform = NotificationDetails(android: android, iOS: ios);
 
     await _flutterLocalNotificationsPlugin.show(
         0, "Demo instant notification", "Tap to do something", platform,
@@ -41,7 +40,7 @@ class NotificationService extends ChangeNotifier {
 
   //Image notification
   Future imageNotification() async {
-    var bigPicture = BigPictureStyleInformation(
+    var bigPicture = const BigPictureStyleInformation(
         DrawableResourceAndroidBitmap("ic_launcher"),
         largeIcon: DrawableResourceAndroidBitmap("ic_launcher"),
         contentTitle: "Demo image notification",
@@ -52,7 +51,7 @@ class NotificationService extends ChangeNotifier {
     var android = AndroidNotificationDetails("id", "channel",
         styleInformation: bigPicture);
 
-    var platform = new NotificationDetails(android: android);
+    var platform = NotificationDetails(android: android);
 
     await _flutterLocalNotificationsPlugin.show(
         0, "Demo Image notification", "Tap to do something", platform,
@@ -61,7 +60,7 @@ class NotificationService extends ChangeNotifier {
 
   //Stylish Notification
   Future stylishNotification() async {
-    var android = AndroidNotificationDetails("id", "channel",
+    var android = const AndroidNotificationDetails("id", "channel",
         color: Colors.deepOrange,
         enableLights: true,
         enableVibration: true,
@@ -69,7 +68,7 @@ class NotificationService extends ChangeNotifier {
         styleInformation: MediaStyleInformation(
             htmlFormatContent: true, htmlFormatTitle: true));
 
-    var platform = new NotificationDetails(android: android);
+    var platform = NotificationDetails(android: android);
 
     await _flutterLocalNotificationsPlugin.show(
         0, "Demo Stylish notification", "Tap to do something", platform);
@@ -79,7 +78,7 @@ class NotificationService extends ChangeNotifier {
 
   Future sheduledNotification() async {
     var interval = RepeatInterval.everyMinute;
-    var bigPicture = BigPictureStyleInformation(
+    var bigPicture = const BigPictureStyleInformation(
         DrawableResourceAndroidBitmap("ic_launcher"),
         largeIcon: DrawableResourceAndroidBitmap("ic_launcher"),
         contentTitle: "Demo image notification",
@@ -90,7 +89,7 @@ class NotificationService extends ChangeNotifier {
     var android = AndroidNotificationDetails("id", "channel",
         styleInformation: bigPicture);
 
-    var platform = new NotificationDetails(android: android);
+    var platform = NotificationDetails(android: android);
 
     await _flutterLocalNotificationsPlugin.periodicallyShow(
         0,
